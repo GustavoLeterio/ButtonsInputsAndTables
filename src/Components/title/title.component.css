@@ -1,0 +1,9 @@
+span {
+  color: var(--font-color-black);
+  text-transform: uppercase;
+  font-size: clamp(.85rem,1.25vw,1rem);
+}
+
+hr {
+  border: 1px solid var(--placeholder-color);
+}

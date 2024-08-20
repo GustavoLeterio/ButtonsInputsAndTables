@@ -1,0 +1,49 @@
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  margin-top: .5rem;
+}
+
+a{
+  color: var(--font-color-white);
+  text-decoration: none;
+  font-weight: 600;
+}
+li{
+  padding: .5rem 1rem;
+  border-radius: .25rem;
+  word-wrap: break-word;
+  width: 100%;
+  background-color: red;
+}
+.green{
+  background-color: var(--success-secondary);
+}
+
+.yellow{
+  background-color: var(--warning-secondary);
+}
+
+.red{
+  background-color: var(--fail-secondary);
+}
+
+.grey {
+  background-color: var(--placeholder-color);
+}

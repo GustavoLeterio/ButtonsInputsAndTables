@@ -1,0 +1,50 @@
+.label{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: var(--placeholder-color);
+}
+.label span{
+  display: flex;
+  align-items: center;
+  gap:.25rem;
+}
+
+.bar{
+  width: 100%;
+  height: .5rem;
+  position: relative;
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+.bar .progress{
+  position: absolute;
+  height: 100%;
+}
+/* green */
+.bar.green{
+  background-color: var(--success-primary);
+  border:2px solid var(--success-secondary);
+}
+.bar.green .progress{
+  background-color: var(--success-secondary);
+}
+
+/* yellow */
+.bar.yellow{
+  background-color: var(--warning-thirdiary);
+  border:2px solid var(--warning-thirdiary);
+}
+.bar.yellow .progress{
+  background-color: var(--warning-thirdiary);
+}
+
+/* red */
+.bar.red{
+  background-color: var(--fail-primary);
+  border:2px solid var(--fail-thirdiary);
+}
+.bar.red .progress{
+  background-color: var(--fail-thirdiary);
+}

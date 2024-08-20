@@ -1,0 +1,17 @@
+<!-- Color should be [dark-blue, wine, light-blue, yellow] -->
+<button *ngIf="type=='dropdown'" #ddButton (click)="toggleDropdown()"
+  class="button {{color}} {{disabled && 'disabled'}}" type="button" [attr.disabled]="disabled?true:null">
+  <img src="{{ icon }}" *ngIf="icon" />
+  {{ text }}
+</button>
+<ul *ngIf="type=='dropdown'"
+  class="{{isOpened && 'open'}} {{dropdownPos.fixTop  && 'fixTop'}} {{dropdownPos.fixRight && 'fixRight'}}">
+  <li *ngFor="let option of options" (click)="clickEmitter.emit({e:$event,value:option})" (blur)="isOpened = false">
+    {{option}}</li>
+</ul>
+
+<button *ngIf="type!='dropdown'" class="{{color}} {{disabled && 'disabled'}}" type="{{ type }}" value="{{value}}"
+  [attr.disabled]="disabled?true:null">
+  <img src="{{ icon }}" *ngIf="icon" />
+  {{ text }}
+</button>

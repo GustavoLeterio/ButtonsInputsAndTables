@@ -1,0 +1,70 @@
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-container {
+  display: flex;
+  position: relative;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid var(--placeholder-color);
+  border-radius: .25rem;
+  transition: var(--default-transition);
+}
+
+div label svg path{
+  transition: var(--default-transition);
+}
+
+div label:hover {
+  border: 1px solid var(--light-blue);
+}
+
+div label:hover select {
+  color: var(--font-color-black);
+}
+
+div label:hover svg path {
+  stroke: var(--font-color-black);
+}
+
+select {
+  color: var(--font-color-black);
+  background-color: transparent;
+  width: 100%;
+  padding: .5rem 2rem .5rem .5rem;
+  font-size: clamp(.7rem,1.25vw,0.8rem);
+  appearance: none;
+  text-transform: capitalize;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: .25rem;
+  transition: var(--default-transition);
+}
+
+div label svg {
+  position: absolute;
+  pointer-events: none;
+  right: .5rem;
+  cursor: pointer;
+  transition: var(--default-transition);
+}
+
+.labelText{
+  font-size: clamp(.8rem,1.25vw,0.9rem);
+}
+
+.disabled{
+  color: var(--font-color-black);
+  cursor: default;
+}
+
+div label.disabled:hover{
+  border: 1px solid var(--placeholder-color)!important;
+}
+
+.disabled svg{
+  display: none;
+}

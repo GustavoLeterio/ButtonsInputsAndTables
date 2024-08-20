@@ -1,0 +1,15 @@
+<div>
+  <span class="labelText">{{label}}</span>
+  <label class="{{setDisabled?'disabled':''}} select-container">
+    <select class="{{setDisabled?'disabled':''}}" id="select" (change)="changeValue($event)" [disabled]="setDisabled">
+      <option [value]="null" disabled [attr.selected]="!setValue?'':null"
+        [style]="hidePlaceholder||setValue?'display:none;':''">
+        {{placeholder}}</option>
+      <option [value]="option" *ngFor="let option of options" [attr.selected]="setValue == option?'':null"> {{option}}
+      </option>
+    </select>
+    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 1L7 9L13 1" stroke="#AAAAAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </label>
+</div>

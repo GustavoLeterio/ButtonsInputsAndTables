@@ -1,1 +1,121 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --dark-blue: rgba(24, 27, 74, 1);
+  --lighter-dark-blue: rgba(93, 97, 150, 1);
+  --light-blue: rgba(1, 180, 255, 1);
+  --lighter-light-blue: rgba(77, 201, 255, 1);
+  --wine: rgba(168, 0, 68, 1);
+  --light-wine: rgba(209, 80, 132, 1);
+  --yellow: rgba(255, 182, 0, 1);
+  --light-yellow: rgba(255, 204, 77, 1);
+  --success-primary: rgba(76, 210, 54, 1);
+  --success-secondary: rgba(54, 154, 38, 1);
+  --success-thirdiary: rgb(33, 97, 24);
+  --warning-primary: #FBD67B;
+  --warning-secondary: rgba(255, 182, 0, 1);
+  --warning-thirdiary: rgb(155, 111, 0);
+  --fail-primary: #ECA5A5;
+  --fail-secondary: #dc5050;
+  --fail-thirdiary: #a03535;
+  --font-color-black: rgba(34, 34, 34, 1);
+  --font-color-white: rgba(255, 255, 255, 1);
+  --dark-table-cell: #efefef;
+  --light-table-cell: #fcfcfc;
+  --background-color: rgba(246, 246, 246, 1);
+  --placeholder-color: rgba(170, 170, 170, 1);
+  --grey: rgba(133, 128, 126, 1);
+  --table-border: rgb(203, 203, 203);
+  --bg-color-grey: rgb(239, 239, 239);
+  --bg-color-light-grey: rgb(217, 217, 217);
+  --default-transition: 200ms ease-in-out;
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--placeholder-color);
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+app-root {
+  display: flex;
+  overflow-y: hidden !important;
+}
+
+body {
+  background-color: var(--background-color) !important;
+}
+
+
+app-input,
+app-button {
+  width: fit-content;
+}
+
+app-button{
+  position: relative;
+}
+
+app-table {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  gap: 1rem;
+}
+
+table {
+  vertical-align: middle !important;
+  margin: 0 !important;
+}
+
+thead {
+  vertical-align: middle !important;
+}
+
+hr {
+  margin: 0 !important;
+}
+
+h1 {
+  margin: 0 !important;
+}
+
+.image {
+  width: 3rem;
+  border-radius: 100%;
+}
+
+/* Inputs */
+label {
+  cursor: pointer !important;
+}
+
+input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 1rem;
+  color: var(--placeholder-color);
+  cursor: pointer;
+  transition: var(--default-transition);
+}
+
+input:focus,
+input:hover,
+input:hover::placeholder {
+  color: var(--font-color-black);
+}
+

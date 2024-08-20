@@ -1,0 +1,84 @@
+<div class="field" *ngIf="
+    type == 'text' ||
+    type == 'search' ||
+    type == 'date' ||
+    type == 'file' ||
+    type == 'money' ||
+    type == 'phone'
+  ">
+  <label>
+    <span class="labelText">{{ label }}
+    </span>
+    <div class="input-container {{ setDisabled ? 'disabled' : '' }}">
+      <!-- phone -->
+      <input *ngIf="type == 'phone'" name="{{ name }}" type="{{ type }}" placeholder="{{ placeholder }}" maxlength="14"
+        (change)="changeValue($event)" mask="(00)00000-0000" [(ngModel)]="setValue" [disabled]="setDisabled" />
+      <!-- MONEY -->
+      <input *ngIf="type == 'money'" class="money" prefix="R$ " (change)="changeValue($event)" mask="separator.2"
+        name="{{ name }}" [type]="type" placeholder="R$ 0000,00" [ngModel]="setValue" [disabled]="setDisabled" />
+      <!-- SEARCH,TEXT -->
+      <input *ngIf="
+          type != 'file' &&
+          type != 'money' &&
+          type != 'phone'
+        " name="{{ name }}" type="{{ type }}" placeholder="{{ placeholder }}" (change)="changeValue($event)"
+        mask="{{ mask }}" [attr.minlength]="length.min ?? 'auto'" [attr.maxlength]="length.max ?? 'auto'"
+        [attr.min]="length.min ?? 'auto'" [attr.max]="length.max ?? 'auto'" [(ngModel)]="setValue"
+        [disabled]="setDisabled" />
+      <!-- FILE -->
+      <input *ngIf="type == 'file'" name="{{ name }}" id="fileInput" type="{{ type }}" placeholder="{{ placeholder }}"
+        (change)="[renameFile(), changeValue($event)]" [disabled]="setDisabled" />
+      <div class="pseudo-file-input" *ngIf="type == 'file'">
+        <div class="file-placeholder">
+          <span>
+            {{placeholder??"Selecione um arquivo"}}
+          </span>
+          <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M7 10.5425V13.9C7 14.155 7.096 14.3686 7.288 14.5408C7.47933 14.7136 7.71667 14.8 8 14.8C8.28333 14.8 8.521 14.7136 8.713 14.5408C8.90433 14.3686 9 14.155 9 13.9V10.5425L9.4 11.3525C9.5 11.4425 9.61267 11.51 9.738 11.555C9.86267 11.6 9.98767 11.6186 10.113 11.6108C10.2377 11.6036 10.3583 11.5775 10.475 11.5325C10.5917 11.4875 10.7 11.42 10.8 11.33C10.9833 11.15 11.0793 10.94 11.088 10.7C11.096 10.46 11 10.25 10.8 10.07L8.7 7.23C8.6 7.14 8.49167 7.0761 8.375 7.0383C8.25833 7.0011 8.13333 6.9825 8 6.9825C7.86667 6.9825 7.74167 7.0011 7.625 7.0383C7.50833 7.0761 7.4 7.14 7.3 7.23L5.2 10.07C5 10.25 4.90433 10.46 4.913 10.7C4.921 10.94 5.025 11.15 5.225 11.33C5.425 11.495 5.65833 11.5814 5.925 11.5892C6.19167 11.5964 6.425 11.51 6.625 11.33L7 10.5425ZM2 18C1.45 18 0.979333 17.8239 0.588 17.4717C0.196 17.1189 0 16.695 0 16.2V1.8C0 1.305 0.196 0.8811 0.588 0.5283C0.979333 0.1761 1.45 0 2 0H9.175C9.44167 0 9.696 0.0450001 9.938 0.135C10.1793 0.225 10.3917 0.3525 10.575 0.5175L15.425 4.8825C15.6083 5.0475 15.75 5.2386 15.85 5.4558C15.95 5.6736 16 5.9025 16 6.1425V16.2C16 16.695 15.8043 17.1189 15.413 17.4717C15.021 17.8239 14.55 18 14 18H2ZM9 5.4V1.8H2V16.2H14V6.3H12H10C9.71667 6.3 9.47933 6.2136 9.288 6.0408C9.096 5.8686 9 5.655 9 5.4Z"
+              fill="#AAAAAA" />
+          </svg>
+        </div>
+        <div *ngIf="fileName > '0'" class="fileManagement">
+          <span>| {{ fileName }}</span>
+          <button (click)="removeFile()">
+            <svg width="12" height="12" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 34L34 2M34 34L2 2" stroke="black" stroke-width="4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <button *ngIf="type == 'search'">
+        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16.7207 15.88L13.5106 12.6794C14.5464 11.3599 15.1083 9.73054 15.1062 8.05312C15.1062 6.55926 14.6633 5.09894 13.8333 3.85684C13.0034 2.61473 11.8237 1.64663 10.4436 1.07495C9.06343 0.503273 7.54475 0.353696 6.07958 0.645135C4.61442 0.936573 3.26858 1.65594 2.21226 2.71226C1.15594 3.76858 0.436573 5.11442 0.145135 6.57958C-0.146304 8.04475 0.00327259 9.56343 0.57495 10.9436C1.14663 12.3237 2.11473 13.5034 3.35684 14.3333C4.59894 15.1633 6.05926 15.6062 7.55312 15.6062C9.23054 15.6083 10.8599 15.0464 12.1794 14.0106L15.38 17.2207C15.4678 17.3092 15.5722 17.3795 15.6873 17.4274C15.8023 17.4753 15.9257 17.5 16.0504 17.5C16.175 17.5 16.2984 17.4753 16.4135 17.4274C16.5285 17.3795 16.633 17.3092 16.7207 17.2207C16.8092 17.133 16.8795 17.0285 16.9274 16.9135C16.9753 16.7984 17 16.675 17 16.5504C17 16.4257 16.9753 16.3023 16.9274 16.1873C16.8795 16.0722 16.8092 15.9678 16.7207 15.88ZM1.88828 8.05312C1.88828 6.93272 2.22052 5.83749 2.84298 4.90591C3.46544 3.97433 4.35017 3.24825 5.38528 2.81949C6.4204 2.39074 7.55941 2.27855 8.65828 2.49713C9.75715 2.71571 10.7665 3.25523 11.5588 4.04748C12.351 4.83972 12.8905 5.8491 13.1091 6.94797C13.3277 8.04684 13.2155 9.18585 12.7868 10.221C12.358 11.2561 11.6319 12.1408 10.7003 12.7633C9.76876 13.3857 8.67352 13.718 7.55312 13.718C6.05072 13.718 4.60984 13.1211 3.54748 12.0588C2.48511 10.9964 1.88828 9.55553 1.88828 8.05312Z"
+            fill="#AAAAAA" />
+        </svg>
+      </button>
+    </div>
+  </label>
+</div>
+<div class="checkers-field" *ngIf="type == 'radio' || type == 'checkbox'">
+  <span class="labelText">{{ label }}</span>
+  <div class="checkerWrapper" [ngStyle]="{ 'flex-direction': flexDirection == 'column' ? 'column' : '' }">
+    <label class="checkers-label" *ngFor="let item of items">
+      <input type="{{ type }}" name="{{ name }}" value="{{ item }}" (change)="changeValue($event)"
+        [attr.checked]="setValue == item ? '' : null" [disabled]="setDisabled"
+        [class]="setDisabled ? 'disabled' : ''" />
+      {{ item }}
+    </label>
+  </div>
+</div>
+
+<h1 *ngIf="
+    type != 'search' &&
+    type != 'text' &&
+    type != 'date' &&
+    type != 'checkbox' &&
+    type != 'radio' &&
+    type != 'file' &&
+    type != 'money' &&
+    type != 'phone'
+  ">
+  You wrote the input type wrong
+</h1>

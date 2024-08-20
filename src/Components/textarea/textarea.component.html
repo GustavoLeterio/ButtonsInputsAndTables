@@ -1,0 +1,9 @@
+  <label [for]="id" class="labelText">{{label}}
+    <div
+      class="wrapper {{contentLength == (length?length.max:null)?'wrapperInvalid':''}} {{disabled?'disabled':''}}">
+      <textarea [name]="name" [id]="id" [placeholder]="placeholder" [rows]="rows" (input)="changeValue($event)"
+        [attr.minlength]="length?length.min??'auto':'auto'" disabled="{{disabled?true:null}}"
+        [attr.maxlength]="length?length.max??'auto':'auto'">{{setValue}}</textarea>
+      <span *ngIf="length??false" class="counter {{contentLength == length!.max?'invalid':''}}">{{contentLength}}</span>
+    </div>
+  </label>
