@@ -1,4 +1,4 @@
-import { tableConfig } from './../Components/table/Interfaces/tableConfig';
+import { tableConfig } from './Components/table/Interfaces/tableConfig';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
